@@ -2,8 +2,8 @@ import React from "react";
 
 const LabelAndInput = ({ label, type }) => {
   return (
-    <div className="w-80 flex flex-col gap-1">
-      <label className="font-medium text-sm text-opacity-70 text-black">
+    <div className="sm:w-80 flex flex-col gap-1">
+      <label className="font-medium text-sm text-gray-500">
         {label}
       </label>
       <input
