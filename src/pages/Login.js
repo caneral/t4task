@@ -5,6 +5,10 @@ import logo from "../assets/images/logo.png";
 import Button from "../components/Button";
 import { useForm } from "react-hook-form";
 import { login } from "../services/authService";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Login = () => {
   const {
@@ -14,10 +18,25 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
-    login(data).then((response) => {
-      console.log(response)
-    });
+    login(data)
+      .then((response) => {
+        console.log(response.data.data);
+        localStorage.setItem("userData", JSON.stringify(response.data.data));
+      })
+      .catch((error) => {
+        const statusCode = error.response.status;
+        const errMessage = error.response.data.errmsg;
+        return MySwal.fire({
+          icon: "error",
+          title:
+            statusCode === 401 ? (
+              <p>Check your informations...</p>
+            ) : (
+              <p>Something went wrong!</p>
+            ),
+          text: errMessage,
+        });
+      });
   };
 
   return (
