@@ -4,7 +4,7 @@ import LabelAndInput from "../components/LabelAndInput";
 import logo from "../assets/images/logo.png";
 import Button from "../components/Button";
 import { useForm } from "react-hook-form";
-import { login } from "../services/authService";
+import { login } from "../services/jwt/jwtService";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -22,6 +22,10 @@ const Login = () => {
       .then((response) => {
         console.log(response.data.data);
         localStorage.setItem("userData", JSON.stringify(response.data.data));
+        localStorage.setItem(
+          "accessToken",
+          JSON.stringify(response.data.data.token)
+        );
       })
       .catch((error) => {
         const statusCode = error.response.status;
