@@ -7,10 +7,12 @@ import { useForm } from "react-hook-form";
 import { login } from "../services/jwt/jwtService";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useNavigate } from "react-router-dom";
 
 const MySwal = withReactContent(Swal);
 
 const Login = () => {
+  let navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,6 +27,7 @@ const Login = () => {
           "accessToken",
           JSON.stringify(response.data.data.token)
         );
+        navigate("/");
       })
       .catch((error) => {
         const statusCode = error.response.status;

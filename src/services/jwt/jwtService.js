@@ -4,7 +4,7 @@ import t4Api from "../../configs/t4Api";
 const requestHandler = (request) => {
   const accessToken = getToken();
   if (accessToken) {
-    request.headers.Authorization = `Bearer ${accessToken}`;
+    request.headers.Authentication = `Bearer ${accessToken}`;
   }
   return request;
 };
@@ -40,3 +40,5 @@ export const login = (params) => {
 export const clearLocalStorage = () => {
   return localStorage.clear();
 };
+
+export const isUserLoggedIn = () => localStorage.getItem("userData");
