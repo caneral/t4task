@@ -4,6 +4,7 @@ import LabelAndInput from "../components/LabelAndInput";
 import logo from "../assets/images/logo.png";
 import Button from "../components/Button";
 import { useForm } from "react-hook-form";
+import { login } from "../services/authService";
 
 const Login = () => {
   const {
@@ -13,7 +14,10 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data)
+    login(data).then((response) => {
+      console.log(response)
+    });
   };
 
   return (
