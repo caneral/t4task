@@ -4,7 +4,6 @@ import t4Api from "../../configs/t4Api";
 const requestHandler = (request) => {
   const accessToken = getToken();
   if (accessToken) {
-      console.log("first")
     request.headers.Authorization = `Bearer ${accessToken}`;
   }
   return request;
@@ -24,8 +23,6 @@ api.interceptors.response.use(
   (error) => {
     const { config, response } = error;
     if (response && response.status === 401) {
-      console.log("Caner Al");
-
       clearLocalStorage();
     }
     return Promise.reject(error);

@@ -20,7 +20,6 @@ const Login = () => {
   const onSubmit = (data) => {
     login(data)
       .then((response) => {
-        console.log(response.data.data);
         localStorage.setItem("userData", JSON.stringify(response.data.data));
         localStorage.setItem(
           "accessToken",
