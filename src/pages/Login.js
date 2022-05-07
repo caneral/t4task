@@ -29,7 +29,7 @@ const Login = () => {
       })
       .catch((error) => {
         const statusCode = error.response.status;
-        const errMessage = error.response.data.errmsg;
+        const errMessage = error.response?.data?.errmsg;
         return MySwal.fire({
           icon: "error",
           title:
